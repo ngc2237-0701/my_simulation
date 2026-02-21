@@ -1,0 +1,14 @@
+# MAVROS Configuration
+startup_px4_usb_quirk: true
+
+# Enable TF broadcasting for local position
+local_position:
+  tf:
+    send: true
+    frame_id: "odom"
+    child_frame_id: "base_link"
+    send_fcu: false
+
+global_position:
+  tf:
+    send: false

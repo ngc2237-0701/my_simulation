@@ -1,0 +1,17 @@
+<launch>
+    <!-- 1. Gazebo + PX4 SITL -->
+    <include file="$(find my_simulation)/launch/gazebo_world.launch"/>
+
+    <!-- 2. VINS-Fusion -->
+    <include file="$(find my_simulation)/launch/vins.launch"/>
+
+    <!-- 3. Ego Planner -->
+    <include file="$(find my_simulation)/launch/ego_planner.launch"/>
+
+    <!-- 4. Trajectory Tracker -->
+    <node pkg="my_simulation" type="trajectory_tracker.py" name="trajectory_tracker" output="screen"/>
+
+    <!-- 5. RViz -->
+    <include file="$(find my_simulation)/launch/rviz_view.launch"/>
+
+</launch>

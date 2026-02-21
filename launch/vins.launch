@@ -1,0 +1,18 @@
+<launch>
+    <arg name="config_path" default="$(find my_simulation)/config/vins_config.yaml" />
+    <arg name="vins_path" default="$(find vins)/../config/../" />
+    
+    <node name="vins_estimator" pkg="vins" type="vins_node" output="screen" args="$(arg config_path)">
+        <!-- Remap TF to avoid conflict with MAVROS -->
+        <remap from="/tf" to="/tf_vins_ignored" />
+    </node>
+
+    <node name="loop_fusion" pkg="loop_fusion" type="loop_fusion_node" output="log" args="$(arg config_path)">
+        <remap from="/tf" to="/tf_vins_ignored" />
+    </node>
+    
+    <!-- TF for camera to body if needed, but VINS handles it internally via extrinsic params -->
+    <!-- However, we need to publish map->odom->base_link? VINS usually publishes odom->camera_pose -->
+    <!-- We might need map->odom -->
+    
+</launch>

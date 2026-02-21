@@ -1,0 +1,3 @@
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_simulation)/config/rviz_config.rviz" required="true" />
+</launch>

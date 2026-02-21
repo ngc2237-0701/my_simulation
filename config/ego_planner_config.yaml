@@ -1,0 +1,54 @@
+manager:
+  max_vel: 2.0
+  max_acc: 3.0
+  max_jerk: 4.0
+  control_points_distance: 0.4
+  feasibility_tolerance: 0.05
+  planning_horizon: 7.5
+  use_distinctive_trajs: false
+  drone_id: 0
+
+optimization:
+  lambda1: 10.0
+  lambda2: 10.0
+  lambda3: 0.00001
+  lambda4: 0.01
+  dist0: 0.5
+  max_vel: 2.0
+  max_acc: 3.0
+  algorithm: 40
+  max_iteration_num: 200
+  min_iter_num: 20
+  smoothing_factor: 20.0
+  cumulated_time: 100.0
+  max_use_time: 0.05
+  time_resolution: 0.8
+  des_dist: 0.6
+
+grid_map:
+  resolution: 0.1
+  map_size_x: 40.0 
+  map_size_y: 40.0 
+  map_size_z: 5.0 
+  local_update_range_x: 5.5 
+  local_update_range_y: 5.5 
+  local_update_range_z: 4.5 
+  obstacles_inflation: 0.099 
+  local_map_margin: 10
+  ground_height: -0.01
+  # camera parameters
+  cx: 320.0
+  cy: 240.0
+  fx: 343.37
+  fy: 343.37
+  k_depth_scaling_factor: 1000.0
+  skip_pixel_stride: 1
+  p_min: 0.1
+  p_max: 20.0
+  update_range: 5.5
+  raycast_max_length: 6.0
+  show_occ_time: false
+  pose_type: 2  # 1: pose, 2: odom
+  frame_id: "world"
+
+

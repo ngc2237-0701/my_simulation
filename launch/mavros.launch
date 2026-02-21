@@ -1,0 +1,6 @@
+<launch>
+    <!-- Include our custom PX4 launch file -->
+    <include file="$(find my_simulation)/launch/px4.launch">
+        <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557" />
+    </include>
+</launch>
