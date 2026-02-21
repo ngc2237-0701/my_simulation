@@ -3,7 +3,7 @@
   <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen"/>
   
   <node pkg="nodelet" type="nodelet" name="depth_image_proc" args="load depth_image_proc/point_cloud_xyz nodelet_manager" output="screen">
-    <remap from="camera_info" to="/iris/depth_camera/camera_info"/>
+    <remap from="camera_info" to="/iris/depth_camera/depth/camera_info"/>
     <remap from="image_rect" to="/iris/depth_camera/depth/image_raw"/>
     <remap from="points" to="/iris/depth_camera/points"/>
   </node>
@@ -83,6 +83,9 @@
   <!-- TF from body to depth_camera_link -->
   <!-- <node pkg="tf" type="static_transform_publisher" name="tf_body_camera" args="0.1 0 0 0 0 0 body depth_camera_link 100" /> -->
   <node pkg="tf" type="static_transform_publisher" name="tf_base_link_camera" args="0.1 0 0 0 0 0 base_link depth_camera_link 100" />
+  
+  <!-- TF from depth_camera_link to depth_camera_optical_link (Z forward, X right, Y down) -->
+  <node pkg="tf" type="static_transform_publisher" name="tf_camera_optical" args="0 0 0 -1.5707963 0 -1.5707963 depth_camera_link depth_camera_optical_link 100" />
   
   <!-- Additional frames for MAVROS/Model compatibility -->
   <!-- DISABLED: body -> base_link to avoid conflict with MAVROS odom -> base_link -->

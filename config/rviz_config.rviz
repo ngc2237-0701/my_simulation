@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /TF1
         - /PointCloud21
-                                                                                 Splitter Ratio: 0.5
+      Splitter Ratio: 0.5
     Tree Height: 549
 Visualization Manager:
   Class: ""
@@ -70,6 +70,14 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
+      Image Topic: /iris/camera/image_raw
+      Name: CameraImage
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
       Image Topic: /iris/depth_camera/depth/image_raw
       Name: DepthImage
       Overlay Alpha: 0.5
@@ -81,6 +89,62 @@ Visualization Manager:
       Marker Topic: /planning/draw_traj
       Name: TrajectoryMarkers
       Queue Size: 100
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: OccupancyMap
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 5
+      Size (m): 0.1
+      Style: Points
+      Topic: /grid_map/occupancy
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 0; 255; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: InflatedMap
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.1
+      Style: Points
+      Topic: /grid_map/occupancy_inflate
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -117,3 +181,12 @@ Visualization Manager:
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
       Yaw: 0.785398006
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 800
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Width: 1200
+  X: 0
+  Y: 0

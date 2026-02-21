@@ -54,9 +54,9 @@
           <imageTopicName>camera/image_raw</imageTopicName>
           <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
           <depthImageTopicName>depth_camera/depth/image_raw</depthImageTopicName>
-          <depthImageCameraInfoTopicName>depth_camera/camera_info</depthImageCameraInfoTopicName>
+          <depthImageCameraInfoTopicName>depth_camera/depth/camera_info</depthImageCameraInfoTopicName>
           <pointCloudTopicName>depth_camera/points_sim</pointCloudTopicName>
-          <frameName>depth_camera_link</frameName>
+          <frameName>depth_camera_optical_link</frameName>
           <pointCloudCutoff>0.1</pointCloudCutoff>
           <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
           <distortionK1>0.0</distortionK1>
