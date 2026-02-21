@@ -1,3 +1,18 @@
 <launch>
+  <!-- Static TF publishers needed for RViz to show all frames correctly.
+       These duplicate the publishers in sim_all.launch (with unique node names
+       prefixed "rviz_" to avoid conflicts). Duplicate static_transform_publisher
+       nodes publishing identical transforms are safe in ROS. Including them here
+       allows rviz_view.launch to be used standalone without broken transforms. -->
+  <node pkg="tf" type="static_transform_publisher" name="rviz_map_to_world"
+        args="0 0 0 0 0 0 map world 100" />
+  <node pkg="tf" type="static_transform_publisher" name="rviz_world_to_odom"
+        args="0 0 0 0 0 0 world odom 100" />
+  <node pkg="tf" type="static_transform_publisher" name="rviz_base_link_camera"
+        args="0.1 0 0 0 0 0 base_link depth_camera_link 100" />
+  <!-- ROS camera optical convention: X right, Y down, Z forward (-pi/2 around Z then X) -->
+  <node pkg="tf" type="static_transform_publisher" name="rviz_camera_optical"
+        args="0 0 0 -1.5707963267948966 0 -1.5707963267948966 depth_camera_link depth_camera_optical_frame 100" />
+
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_simulation)/config/rviz_config.rviz" required="true" />
 </launch>
