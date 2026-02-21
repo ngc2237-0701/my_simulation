@@ -10,7 +10,7 @@
 
   <!-- Transform from VINS output to map or world if needed -->
   <!-- Assuming VINS outputs in "world" frame which equals "map" -->
-  <node pkg="tf" type="static_transform_publisher" name="map_to_world" args="0 0 0 0 0 0 map world 100" />
+  <!-- NOTE: map->world static transform is published by sim_all.launch -->
   
   <!-- Ego Planner -->
   <!-- Note: This assumes 'ego_planner' package is installed or compiled -->
@@ -80,19 +80,8 @@
       <param name="traj_server/time_forward" value="1.0" />
   </node>
 
-  <!-- TF from body to depth_camera_link -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="tf_body_camera" args="0.1 0 0 0 0 0 body depth_camera_link 100" /> -->
-  <node pkg="tf" type="static_transform_publisher" name="tf_base_link_camera" args="0.1 0 0 0 0 0 base_link depth_camera_link 100" />
-  
-  <!-- Additional frames for MAVROS/Model compatibility -->
-  <!-- DISABLED: body -> base_link to avoid conflict with MAVROS odom -> base_link -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="body_to_base_link" args="0 0 0 0 0 0 body base_link 100" /> -->
-  
-  <!-- Add base_link -> base_link_frd for compatibility -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_frd_tf" args="0 0 0 0 0 0 base_link base_link_frd 100" />
-  
-  <!-- Connect world to odom so map -> world -> odom -> base_link works -->
-  <node pkg="tf" type="static_transform_publisher" name="world_to_odom" args="0 0 0 0 0 0 world odom 100" />
+  <!-- TF static publishers are now in sim_all.launch to ensure they are always available.
+       Keeping this comment for reference: map->world->odom->base_link->depth_camera_link -->
 
   
 </launch>

@@ -76,6 +76,25 @@ Visualization Manager:
       Queue Size: 2
       Transport Hint: raw
       Value: true
+    - Class: rviz/Odometry
+      Angle Tolerance: 0.10000000149011612
+      Enabled: true
+      Keep: 100
+      Name: DroneOdometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 0.5
+        Axes Radius: 0.019999999552965164
+        Color: 255; 25; 0
+        Head Length: 0.07000000029802322
+        Head Radius: 0.019999999552965164
+        Shaft Length: 0.23000000417232513
+        Shaft Radius: 0.009999999776482582
+        Value: Arrow
+      Topic: /mavros/local_position/odom
+      Value: true
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /planning/draw_traj

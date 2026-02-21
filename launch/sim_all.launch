@@ -1,4 +1,23 @@
 <launch>
+    <!-- Static TF publishers: ensure the map->odom chain is always available -->
+    <!-- map -> world (VINS outputs in "world" frame) -->
+    <node pkg="tf" type="static_transform_publisher" name="map_to_world"
+          args="0 0 0 0 0 0 map world 100" />
+    <!-- world -> odom (odom is the MAVROS local frame) -->
+    <node pkg="tf" type="static_transform_publisher" name="world_to_odom"
+          args="0 0 0 0 0 0 world odom 100" />
+    <!-- base_link -> depth_camera_link (camera is 0.1 m forward of base_link) -->
+    <node pkg="tf" type="static_transform_publisher" name="tf_base_link_camera"
+          args="0.1 0 0 0 0 0 base_link depth_camera_link 100" />
+    <!-- depth_camera_link -> depth_camera_optical_frame
+         ROS camera optical convention: X right, Y down, Z forward
+         Rotation: -pi/2 around Z then -pi/2 around X  (yaw=-pi/2 pitch=0 roll=-pi/2) -->
+    <node pkg="tf" type="static_transform_publisher" name="tf_camera_optical"
+          args="0 0 0 -1.5707963267948966 0 -1.5707963267948966 depth_camera_link depth_camera_optical_frame 100" />
+    <!-- base_link -> base_link_frd (for FCU compatibility) -->
+    <node pkg="tf" type="static_transform_publisher" name="base_link_frd_tf"
+          args="0 0 0 0 0 0 base_link base_link_frd 100" />
+
     <!-- 1. Gazebo + PX4 SITL -->
     <include file="$(find my_simulation)/launch/gazebo_world.launch"/>
 
@@ -11,7 +30,10 @@
     <!-- 4. Trajectory Tracker -->
     <node pkg="my_simulation" type="trajectory_tracker.py" name="trajectory_tracker" output="screen"/>
 
-    <!-- 5. RViz -->
+    <!-- 5. VINS Odometry Fixer: corrects child_frame_id for downstream consumers -->
+    <node pkg="my_simulation" type="fix_vins_odom.py" name="fix_vins_odom" output="screen"/>
+
+    <!-- 6. RViz -->
     <include file="$(find my_simulation)/launch/rviz_view.launch"/>
 
 </launch>
