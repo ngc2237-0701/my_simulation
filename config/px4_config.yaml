@@ -71,7 +71,7 @@ global_position:
 image:
   frame_id: px4flow
 imu:
-  angular_velocity_stdev: 0.0003490659 // 0.02 degrees
+  angular_velocity_stdev: 0.0003490659  # 0.02 degrees
   frame_id: base_link
   linear_acceleration_stdev: 0.0003
   magnetic_stdev: 0.0
